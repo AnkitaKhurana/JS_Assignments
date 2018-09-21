@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <center>
+        <header>
+            <h2>Todo List</h2>
+        </header>
+    </center>
+    <div class="card">
+        <div class="card-body">
+            <div>
+                <label class="display-5">Total Todos: </label>
+                <label class="display-5" id="totalTodos"></label>
+            </div>
+            <div>
+                <label class="display-5">Completed Todos: </label>
+                <label class="display-5" id="completeTodos"></label>
+            </div>
+            <input type="text" id="input" class="input-group-text" style="display:inline" placeholder="New Todo" />
+            <Button id="AddButton" class="btn btn-success"> + </Button>
+            <Button id="SortAll" class="btn btn-warning">Sort Alphabetically</Button>
+            <Button id="SortDT" class="btn btn-warning">Sort By Date|Time</Button>
+            <Button id="DeleteAll" class="btn btn-danger">Delete Checked</Button>
+        </div>
+
+    </div>
+
+
+    <ul id="list"></ul>
+</body>
+<script src="script.js"></script>
+
+</html>
