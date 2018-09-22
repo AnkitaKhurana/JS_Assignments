@@ -180,10 +180,6 @@ function deleteTodo(liId) {
 
     ul.removeChild(li);
 
-    // let ul = document.getElementById("list");
-    // ul.innerHTML="";
-    // GetTodos(ul);
-
     let totalTodos = document.getElementById("totalTodos");
     totalTodos.innerHTML = todos.length;
 
