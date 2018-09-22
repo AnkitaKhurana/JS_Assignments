@@ -116,6 +116,10 @@ function addTodo(message) {
     downButton.onclick = function () {
         moveDown(todo.date);
     };
+    checkbox.onchange = function () {
+        strike(todo.date);
+    }
+
     li.appendChild(p);
     li.appendChild(deleteButton);
     li.appendChild(upButton);
@@ -123,10 +127,11 @@ function addTodo(message) {
     li.appendChild(checkbox);
 
     if (todos.length == 1) {
-        downButton.disabled = false;
+        downButton.disabled = true;
         upButton.disabled = true;
     }
     else {
+        ul.firstChild.childNodes[3].disabled = false;
         downButton.disabled = true;
         upButton.disabled = false;
         if (todos.length != 2) {
@@ -152,10 +157,33 @@ function deleteTodo(liId) {
         .indexOf(liId);
     todos.splice(removeIndex, 1);
 
-    // Remove from Dom
+    //Remove from Dom
     let li = document.getElementById(liId);
     let ul = document.getElementById("list");
+    let childbefore = li.previousElementSibling;
+    let childafter = li.nextElementSibling;
+
+    if (ul.firstChild == li) {
+        if (childafter != null) {
+            childafter.childNodes[2].disabled = true;
+            if (todos.length == 1)
+                childafter.childNodes[3].disabled = true;
+        }
+    }
+    else if (ul.lastChild == li) {
+        if (childbefore != null) {
+            childbefore.childNodes[3].disabled = true;
+            if (todos.length == 1)
+                childbefore.childNodes[2].disabled = true;
+        }
+    }
+
     ul.removeChild(li);
+
+    // let ul = document.getElementById("list");
+    // ul.innerHTML="";
+    // GetTodos(ul);
+
     let totalTodos = document.getElementById("totalTodos");
     totalTodos.innerHTML = todos.length;
 
@@ -302,6 +330,11 @@ function GetTodos(ul) {
         downButton.onclick = function () {
             moveDown(todo.date);
         };
+        checkbox.onchange = function () {
+            strike(todo.date);
+        }
+
+
         li.appendChild(p);
         li.appendChild(deleteButton);
         li.appendChild(upButton);
@@ -311,6 +344,8 @@ function GetTodos(ul) {
         if (index == 0) {
             downButton.disabled = false;
             upButton.disabled = true;
+            if (todos.length == 1)
+                downButton.disabled = true;
         }
         else {
             downButton.disabled = true;
